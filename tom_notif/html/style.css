@@ -1,0 +1,340 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Mặc định */
+#notifications {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* 1. Góc trên trái */
+#notifications.top-left {
+    top: 30px;
+    left: 30px;
+    align-items: flex-start;
+}
+
+/* 2. Giữa trên */
+#notifications.top-center {
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    align-items: center;
+}
+
+/* 3. Góc trên phải */
+#notifications.top-right {
+    top: 30px;
+    right: 30px;
+    align-items: flex-end;
+}
+
+/* 4. Góc dưới phải */
+#notifications.bottom-right {
+    bottom: 30px;
+    right: 30px;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+}
+
+/* 5. Giữa dưới */
+#notifications.bottom-center {
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.notification {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.514);
+    background-color: #fff;
+    min-width: 340px;
+    animation: slideIn 0.3s ease-out;
+    position: relative;
+    cursor: auto;
+    /* ✅ Luôn hiển thị chuột */
+    pointer-events: auto;
+    /* ✅ Luôn cho phép click */
+    z-index: 9999;
+    overflow: hidden;
+}
+
+.notification.information {
+    border-left-color: #2f80ed;
+}
+
+.notification.success {
+    border-left-color: #27ae60;
+}
+
+.notification.error {
+    border-left-color: #eb5757;
+}
+
+.notification .icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background-color: transparent;
+}
+
+
+/* Chỉ bo tròn và tô nền với information & success */
+.notification.information .icon,
+.notification.success .icon {
+    border-radius: 50%;
+}
+
+.notification.information .icon {
+    background: transparent;
+}
+
+/* Tô màu SVG đen = đỏ-cam bằng filter */
+.notification.information .icon img {
+    filter: invert(50%) sepia(73%) saturate(2146%) hue-rotate(185deg) brightness(95%) contrast(95%);
+}
+
+
+.notification.success .icon {
+    background: transparent;
+}
+
+/* Tô màu SVG đen = đỏ-cam bằng filter */
+.notification.success .icon img {
+    filter: invert(48%) sepia(83%) saturate(545%) hue-rotate(74deg) brightness(90%) contrast(92%);
+}
+
+
+/* ❌ Không bo tròn, không background cho error */
+.notification.error .icon {
+    background: transparent;
+}
+
+/* Tô màu SVG đen = đỏ-cam bằng filter */
+.notification.error .icon img {
+    filter: invert(21%) sepia(96%) saturate(7464%) hue-rotate(357deg) brightness(102%) contrast(119%);
+}
+
+
+.notification .icon img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    display: block;
+}
+
+
+
+.notification .text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    color: #333;
+}
+
+.notification .text strong {
+    font-weight: 600;
+    font-size: 17px;
+    /* ✅ Tăng từ 15px → 17px */
+    margin: 0;
+    line-height: 1.3;
+    /* ✅ Cho thoáng hơn một chút */
+}
+
+.notification .text span {
+    font-size: 15px;
+    /* ✅ Tăng từ 14px → 15px */
+    font-weight: 400;
+    margin-top: 4px;
+    /* ✅ Tạo khoảng cách dễ thở hơn */
+    line-height: 1.4;
+    color: #444;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+        /* 👈 Trượt từ dưới lên */
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.button-group {
+    margin-top: 12px;
+    display: flex;
+    gap: 10px;
+}
+
+.notif-btn {
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: white;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 14px;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.notif-btn:hover {
+    background-color: #f0f0f0;
+}
+
+/* Nút X đóng */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background: none;
+    font-size: 18px;
+    font-weight: bold;
+    color: #888;
+    cursor: pointer;
+    padding: 0;
+}
+
+.close-btn:hover {
+    color: #000;
+}
+
+/* =========================== */
+/*       DARK THEME STYLES     */
+/* =========================== */
+body[data-theme="dark"] .notification {
+    background-color: #1e1e1e;
+    color: #f0f0f0;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+}
+
+body[data-theme="dark"] .notification .text strong {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+body[data-theme="dark"] .notification .text span {
+    color: #e0e0e0;
+    /* ✅ sáng hơn #ccc */
+    font-size: 15px;
+}
+
+body[data-theme="dark"] .notif-btn {
+    background-color: transparent;
+    color: #f0f0f0;
+    border: 1px solid #777;
+}
+
+body[data-theme="dark"] .notif-btn:hover {
+    background-color: #2a2a2a;
+}
+
+body[data-theme="dark"] .close-btn {
+    color: #bbb;
+}
+
+body[data-theme="dark"] .close-btn:hover {
+    color: #fff;
+}
+
+/* === Thanh tiến trình màu riêng theo loại === */
+.notification.information .progress-bar {
+    background: linear-gradient(to right, #2f80ed, #56ccf2);
+}
+
+.notification.success .progress-bar {
+    background: linear-gradient(to right, #27ae60, #6fcf97);
+}
+
+.notification.error .progress-bar {
+    background: linear-gradient(to right, #eb5757, #f2994a);
+}
+
+.notification.gta.s .progress-bar {
+    background: linear-gradient(to right, #2f80ed, #56ccf2);
+}
+
+.notification.lspd .progress-bar {
+    background: linear-gradient(to right, #2f80ed, #56ccf2);
+}
+
+.notification.lsfd .progress-bar {
+    background: linear-gradient(to right, #eb5757, #f2994a);
+}
+
+.progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    width: 100%;
+    animation-name: progressbar;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+@keyframes progressbar {
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 0%;
+    }
+}
+
+/* Custom icon PNG (LSPD, LSFD) */
+.notification.lspd .icon img,
+.notification.lsfd .icon img,
+.notification.gtas .icon img {
+    width: 52px;
+    /* 👈 tăng từ 32px → 42px */
+    height: 52px;
+    object-fit: contain;
+    filter: none;
+}
+
+.notification.lspd .icon,
+.notification.lsfd .icon {
+    background-color: #ffffff22;
+    /* nhẹ, cho nền bo tròn */
+    border-radius: 50%;
+    padding: 4px;
+    /* 👈 thêm nếu muốn khoảng trắng */
+}
+
+
+/* Optionally set background or border if muốn riêng biệt */
+.notification.lspd .icon {
+    background-color: #0055aa33;
+    border-radius: 50%;
+}
+
+.notification.lsfd .icon {
+    background-color: #aa000033;
+    border-radius: 50%;
+}

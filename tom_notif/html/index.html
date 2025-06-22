@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Notification Test</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <!-- ✅ Thêm class mặc định -->
+    <div id="notifications" class="top-center"></div>
+
+    <!-- Test buttons -->
+    <!-- <div style="position: fixed; bottom: 30px; left: 30px;">
+        <button onclick="testNotif('information')">Test Info</button>
+        <button onclick="testNotif('success')">Test Success</button>
+        <button onclick="testNotif('error')">Test Error</button>
+    </div> -->
+
+    <!-- ✅ Select chọn vị trí -->
+    <!-- <div style="position: fixed; bottom: 100px; left: 30px;">
+        <label for="position">Vị trí thông báo:</label>
+        <select id="position" onchange="setNotificationPosition(this.value)">
+            <option value="top-left">Góc trên trái</option>
+            <option value="top-center">Giữa trên</option>
+            <option value="top-right">Góc trên phải</option>
+            <option value="bottom-right">Góc dưới phải</option>
+            <option value="bottom-center" selected>Giữa dưới</option>
+        </select>
+    </div> -->
+
+    <!-- Chọn thời gian hiển thị -->
+    <!-- <div style="position: fixed; bottom: 170px; left: 30px;">
+        <label for="duration">Thời gian hiển thị (giây):</label>
+        <input type="number" id="duration" min="1" value="5" onchange="updateNotificationDuration()" />
+    </div> -->
+
+    <!-- Chọn chế độ sáng / tối -->
+    <!-- <div style="position: fixed; bottom: 240px; left: 30px;">
+        <label for="theme">Chế độ giao diện:</label>
+        <select id="theme" onchange="updateThemeMode()">
+            <option value="light" selected>Sáng</option>
+            <option value="dark">Tối</option>
+        </select>
+    </div> -->
+
+</body>
+
+</html>
